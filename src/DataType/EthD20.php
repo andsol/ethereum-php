@@ -2,8 +2,6 @@
 
 namespace Ethereum\DataType;
 
-use Ethereum\DataType\EthQ;
-
 /**
  * Byte data, length 20.
  *
@@ -81,4 +79,9 @@ class EthD20 extends EthD
         return 'static';
     }
 
+    public function encodedHexVal()
+    {
+        // Prefix to 32 byte
+        return '0x' . str_pad($this->val(), 64, 0, STR_PAD_LEFT);
+    }
 }
