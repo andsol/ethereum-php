@@ -66,7 +66,7 @@ class Ethereum extends EthereumStatic implements Web3Interface
      *   Connection to Ethereum node. E.g:
      *   http://localhost:8545 or https://mainnet.infura.io/drupal.
      */
-    public function __construct(string $url = 'http://localhost:8545')
+    public function __construct(string $url = 'http://localhost:8545', int $networkId)
     {
       // Require the workaround helpers, as autoload files in composer
       //   doesn't work as expected.
@@ -338,7 +338,6 @@ class Ethereum extends EthereumStatic implements Web3Interface
      */
     public function request(string $method, array $params = [])
     {
-        $this->id++;
         return $this->client->send($this->client->request($this->id, $method, $params))->getRpcResult();
     }
 
