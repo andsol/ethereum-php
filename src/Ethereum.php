@@ -68,6 +68,7 @@ class Ethereum extends EthereumStatic implements Web3Interface
      */
     public function __construct(string $url = 'http://localhost:8545', int $networkId)
     {
+        $this->id = $networkId;
       // Require the workaround helpers, as autoload files in composer
       //   doesn't work as expected.
       require_once __DIR__ . '/helpers/ethereum-client-workaround-helpers.php';
