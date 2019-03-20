@@ -1,5 +1,5 @@
 {
-  "name": "andsol/ethereum-php",
+  "name": "digitaldonkey/ethereum-php",
   "description": "A library integrating Ethereum with typed PHP.",
   "require": {
     "php": ">=7.1",
