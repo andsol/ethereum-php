@@ -269,7 +269,8 @@ class EthQ extends EthD
      */
     public function hexValUnpadded()
     {
-        return '0x' . $this->value->toHex($this->value->is_negative);
+        $clearZeroes = preg_replace('/$0+/', '', $this->value->toHex($this->value->is_negative));
+        return '0x' . $clearZeroes;
     }
 
     /**
