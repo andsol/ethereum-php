@@ -215,7 +215,6 @@ class Ethereum extends EthereumStatic implements Web3Interface
 
                 $return = $this->createReturnValue($value, $return_type_class, $method);
                 $this->debug('Final return object', $return);
-                $this->debug('<hr />');
 
                 return $return;
             };
