@@ -27,7 +27,7 @@
     "eth_sendTransaction": [["SendTransaction"], "D", 1],
     "eth_sendRawTransaction": [["D"], "D32", 1],
     "eth_call": [["CallTransaction", "Q|T"], "D", 1, true],
-    "eth_estimateGas": [["EstimateTransaction", "Q|T"], "Q", 1],
+    "eth_estimateGas": [["EstimateTransaction"], "Q", 1],
     "eth_getBlockByHash": [["D32", "B"], "Block", 2],
     "eth_getBlockByNumber": [["Q|T", "B"], "Block", 2],
     "eth_getTransactionByHash": [["D32"], "Transaction", 1],

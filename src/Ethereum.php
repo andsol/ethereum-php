@@ -66,8 +66,9 @@ class Ethereum extends EthereumStatic implements Web3Interface
      *   Connection to Ethereum node. E.g:
      *   http://localhost:8545 or https://mainnet.infura.io/drupal.
      */
-    public function __construct(string $url = 'http://localhost:8545')
+    public function __construct(string $url = 'http://localhost:8545', int $networkId)
     {
+        $this->id = $networkId;
       // Require the workaround helpers, as autoload files in composer
       //   doesn't work as expected.
       require_once __DIR__ . '/helpers/ethereum-client-workaround-helpers.php';
@@ -214,7 +215,6 @@ class Ethereum extends EthereumStatic implements Web3Interface
 
                 $return = $this->createReturnValue($value, $return_type_class, $method);
                 $this->debug('Final return object', $return);
-                $this->debug('<hr />');
 
                 return $return;
             };
@@ -338,7 +338,6 @@ class Ethereum extends EthereumStatic implements Web3Interface
      */
     public function request(string $method, array $params = [])
     {
-        $this->id++;
         return $this->client->send($this->client->request($this->id, $method, $params))->getRpcResult();
     }
 
@@ -577,11 +576,11 @@ class Ethereum extends EthereumStatic implements Web3Interface
         foreach ($values as $i => $val) {
             if (is_object($val)) {
                 $return[$i] = $val->toArray();
-            }
-            if (is_array($val)) {
+            } else if (is_array($val)) {
                 $return[$i] = self::arrayToComplexType($typeClass, $val);
+            } else {
+                $return[$i] = new $typeClass($val);
             }
-            $return[$i] = new $typeClass($val);
         }
         return $return;
     }
